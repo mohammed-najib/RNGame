@@ -8,4 +8,7 @@ A game app to learn react-native
 ## Command-Line commands
 ```sh
 yarn expo install expo-linear-gradient
+yarn expo install expo-font
+# yarn expo install expo-app-loading #deprecated
+yarn expo install expo-splash-screen
 ```
