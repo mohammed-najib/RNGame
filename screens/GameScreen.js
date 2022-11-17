@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
-import Numbercontainer from "../components/game/NumberContainer";
-import PrimaryButton from "../components/ui/PrimaryButton";
+import { Alert, StyleSheet, View } from "react-native";
 
+import Numbercontainer from "../components/game/NumberContainer";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 
@@ -61,17 +63,21 @@ const GameScreen = ({ userNumber, onGameOver }) => {
     <View style={styles.screen}>
       <Title>Opponent's Guess!</Title>
       <Numbercontainer>{currentGuess}</Numbercontainer>
-      <View>
-        <Text>Higher or lower?</Text>
-        <View>
-          <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
-            -
-          </PrimaryButton>
-          <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
-            +
-          </PrimaryButton>
+      <Card>
+        <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "lower")}>
+              -
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={nextGuessHandler.bind(this, "greater")}>
+              +
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
       {/* <View>LOG ROUNDS</View> */}
     </View>
   );
@@ -84,6 +90,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
   },
+  instructionText: {
+    marginBottom: 12,
+  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
@@ -92,5 +101,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.accent500,
     padding: 12,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
